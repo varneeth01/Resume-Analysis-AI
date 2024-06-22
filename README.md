@@ -14,7 +14,6 @@ Coding and Collaborative Skill Assessments:
 - Collaborative Skill Evaluation: Assesses candidates' responses to scenario-based questions to evaluate their collaborative and problem-solving skills.
 
 Plagiarism Detection:
-=
 - GitHub Plagiarism Check: Uses the GitHub API to check if the project descriptions provided in resumes are plagiarized from existing repositories.
 - Google Plagiarism Check: Utilizes Google Custom Search API to detect if project descriptions are copied from online sources.
   
