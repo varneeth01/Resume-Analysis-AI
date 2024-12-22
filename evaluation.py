@@ -2,6 +2,21 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.neural_network import MLPClassifier
 import numpy as np
+from PyPDF2 import PdfReader
+
+def get_bert_embeddings(text):
+    return np.random.rand(768)
+
+def read_pdf(file_path):
+    try:
+        reader = PdfReader(file_path)
+        text = ""
+        for page in reader.pages:
+            text += page.extract_text()
+        return text
+    except Exception as e:
+        print(f"Error reading PDF: {e}")
+        return ""
 
 resumes = ["Resume text 1", "Resume text 2", "Resume text 3"]
 labels = ["Good", "Average", "Poor"]
@@ -19,8 +34,11 @@ mlp.fit(X_train, y_train)
 accuracy = mlp.score(X_test, y_test)
 print(f"Model Accuracy: {accuracy}")
 
-new_resume = read_pdf('/mnt/data/Resume-varneeth (3).pdf')
-new_resume_embedding = get_bert_embeddings(new_resume).flatten().reshape(1, -1)
-prediction = mlp.predict(new_resume_embedding)
-predicted_label = label_encoder.inverse_transform(prediction)
-print(f"Predicted Resume Rating: {predicted_label[0]}")
+new_resume = read_pdf('/content/Varneeth-resume.pdf')
+if new_resume:
+    new_resume_embedding = get_bert_embeddings(new_resume).flatten().reshape(1, -1)
+    prediction = mlp.predict(new_resume_embedding)
+    predicted_label = label_encoder.inverse_transform(prediction)
+    print(f"Predicted Resume Rating: {predicted_label[0]}")
+else:
+    print("Failed to read the resume.")
