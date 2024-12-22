@@ -3,7 +3,6 @@
 !pip install gitpython google-api-python-client
 !pip install python-docx
 !pip install PyPDF2
-
 from docx import Document
 import PyPDF2
 
